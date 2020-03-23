@@ -1,0 +1,53 @@
+{% extends 'main.html.twig' %}
+
+{% block title %}Report{% endblock %}
+
+{% block content %}
+    <h1>Report</h1>
+
+
+{#    <table class="ui very basic table">#}
+{#        <tbody>#}
+{#        <tr>#}
+{#            <th>Name</th>#}
+{#            <td>{{ report.name }}</td>#}
+{#            <th>Recursion</th>#}
+{#            <td>{{ report.recursion }}</td>#}
+{#        </tr>#}
+{#        <tr>#}
+{#            <th colspan="4">Query</th>#}
+{#        </tr>#}
+{#        <tr>#}
+{#            <td colspan="4" class="code">{{ report.query }}</td>#}
+{#        </tr>#}
+{#        </tbody>#}
+{#    </table>#}
+
+    <form action="{{ path('report_edit', {'id':report.id}) }}" method="post" class="ui form">
+        <h4 class="ui dividing header">Report Information</h4>
+        <div class="two fields">
+            <div class="field">
+                <label>Name</label>
+                <input type="text" name="report[name]" placeholder="Name" required value="{{ report.name }}">
+            </div>
+            <div class="field">
+                <label>Recursion</label>
+                <select name="report[recursion]" class="ui fluid dropdown">
+                    <option value="None" {% if report.recursion=='None' %}selected{% endif %}>None</option>
+                    <option value="Hourly" {% if report.recursion=='Hourly' %}selected{% endif %}>Hourly</option>
+                    <option value="Daily" {% if report.recursion=='Daily' %}selected{% endif %}>Daily</option>
+                    <option value="Weekly" {% if report.recursion=='Weekly' %}selected{% endif %}>Weekly</option>
+                    <option value="Monthly" {% if report.recursion=='Monthly' %}selected{% endif %}>Monthly</option>
+                </select>
+            </div>
+        </div>
+        <div class="field">
+            <label>Query</label>
+            <textarea name="report[query]" class="code" required>{{ report.query }}</textarea>
+        </div>
+        <input type="hidden" name="token" value="{{ csrf_token('edit_report') }}">
+        <a href="{{ path('report_index') }}" class="ui circular button"><i class="arrow left icon"></i>Back to List</a>
+        <button class="ui violet circular button">Edit</button>
+    </form><br>
+    {{ include('report/_delete_form.html.twig') }}
+{% endblock %}

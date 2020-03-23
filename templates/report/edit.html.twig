@@ -1,0 +1,13 @@
+{% extends 'main.html.twig' %}
+
+{% block title %}Edit Report{% endblock %}
+
+{% block content %}
+    <h1>Edit Report</h1>
+
+    {{ include('report/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('report_index') }}">back to list</a>
+
+    {{ include('report/_delete_form.html.twig') }}
+{% endblock %}

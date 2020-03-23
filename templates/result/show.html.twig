@@ -1,0 +1,35 @@
+{% extends 'main.html.twig' %}
+
+{% block title %}Result{% endblock %}
+
+{% block content %}
+    <div><b>Reporter:</b> {{ result.reporter.username }}</div>
+    <div><b>Ran at:</b> {{ result.ranAt.format('d/m/Y H:i:s') }} <span
+                class="ui mini circular green label">{{ result.ranAt.format('Y-m-d H:i:s')|ago }}</span></div>
+    <b>Query:</b><br>
+    <div class="ui message code">{{ result.report.query }}</div>
+    <b>Result:</b>
+    {% set table = unserialize(result.outcome) %}
+    <div style="overflow-x: scroll;">
+        <table class="ui celled unstackable table">
+            <thead>
+            {% for row in table|slice(0,1) %}
+                <tr>
+                    {% for key in row|keys %}
+                        <th>{{ key }}</th>
+                    {% endfor %}
+                </tr>
+            {% endfor %}
+            </thead>
+            <tbody>
+            {% for row in table %}
+                <tr>
+                    {% for cell in row %}
+                        <td>{{ cell }}</td>
+                    {% endfor %}
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

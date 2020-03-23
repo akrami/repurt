@@ -1,0 +1,100 @@
+p, h1, h2, h3, h4, h5,
+div, span, blockquote,
+input, button, label {
+  font-family: "Roboto", sans-serif !important;
+}
+
+body {
+  background-color: #FCFEFF;
+}
+
+#main-content {
+  margin-left: 63px !important;
+}
+
+#side-effect {
+  width: 42px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  background: #00b899;
+  background: linear-gradient(180deg, #00b899 0%, #00a0fd 100%);
+  z-index: 999;
+}
+#side-effect > i {
+  color: white;
+  position: absolute;
+  left: 8px;
+  top: 14px;
+}
+#side-effect h2 {
+  position: absolute;
+  color: white;
+  bottom: 22px;
+  left: 0;
+  transform: rotate(-90deg);
+}
+#side-effect .list {
+  top: 75px;
+  position: absolute;
+  z-index: 2;
+}
+#side-effect .list .item {
+  display: inline-block;
+  margin-left: 21px;
+  margin-top: 21px;
+  text-align: center;
+  background-color: white;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.15);
+  border-radius: 42px;
+  padding: 0 8px;
+  color: #ABB0B3;
+}
+#side-effect .list .item i {
+  height: 42px;
+  line-height: 42px;
+  width: 24px;
+  text-align: center;
+  padding-right: 0;
+}
+#side-effect .list .item .content {
+  display: none;
+}
+#side-effect .list .item:hover {
+  color: #00A0FF;
+}
+#side-effect .list .item:hover .content {
+  display: table-cell;
+}
+
+#login {
+  height: 100vh;
+}
+#login .column {
+  width: 450px;
+}
+
+#message {
+  position: absolute;
+  left: 10px;
+  bottom: 10px;
+  z-index: 999;
+}
+#message .message {
+  cursor: pointer;
+}
+
+.code {
+  font-family: monospace !important;
+}
+
+#report_list thead th {
+  color: gray;
+  padding-bottom: 5px;
+}
+#report_list tbody td {
+  border: none;
+}
+
+/*# sourceMappingURL=style.css.map */

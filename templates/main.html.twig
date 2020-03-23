@@ -1,0 +1,25 @@
+{# templates/main.html.twig #}
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ title }}{% endblock %}
+
+{% block body %}
+    <div id="side-effect">
+        <i class="building outline large icon"></i>
+        <div class="ui very relaxed list">
+            <a href="{{ path('home') }}" class="item"><i class="large home icon"></i><div class="middle aligned content">Home</div></a>
+            <a href="{{ path('report_index') }}" class="item"><i class="large chart pie icon"></i><div class="middle aligned content">Reports</div></a>
+            <a href="{{ path('setting') }}" class="item"><i class="large cog icon"></i><div class="middle aligned content">Setting</div></a>
+            <a href="{{ path('app_logout') }}" class="item"><i class="large sign-out alternate icon"></i><div class="middle aligned content">LogOut</div></a>
+        </div>
+        <h2>DTS</h2>
+    </div>
+    <div id="main-content">
+        <div class="ui fluid container">
+            <div class="ui basic padded segment">
+                {% block content %}
+                {% endblock %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

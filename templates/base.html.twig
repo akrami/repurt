@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}Welcome!{% endblock %}</title>
+        <link rel="stylesheet" href="{{ asset('css/semantic.min.css') }}">
+        <link rel="stylesheet" href="{{ asset('fonts/fonts.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+        {% block stylesheets %}{% endblock %}
+    </head>
+    <body>
+        {% if message is defined %}
+            <div id="message">
+                <div class="ui {{ message.type }} small compact message" onclick="hide(this)">
+                    {% if message.type=='error' %}<i class="exclamation triangle icon"></i>{% endif %}
+                    {% if message.type=='warning' %}<i class="exclamation icon"></i>{% endif %}
+                    {% if message.type=='info' %}<i class="info icon"></i>{% endif %}
+                    {{ message.data }}
+                </div>
+            </div>
+        {% endif %}
+        {% block body %}{% endblock %}
+        <script src="{{ asset('javascript/jquery-3.4.1.min.js') }}"></script>
+        <script src="{{ asset('javascript/semantic.min.js') }}"></script>
+        <script src="{{ asset('javascript/scripts.js') }}"></script>
+        {% block javascripts %}{% endblock %}
+    </body>
+</html>

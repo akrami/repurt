@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}repurt!{% endblock %}
+
+{% block body %}
+    <div class="ui two column centered middle aligned grid" id="login">
+        <div class="center aligned column">
+            <h1 class="ui violet header">REPURT</h1>
+            <form method="post" class="ui large form">
+                <div class="ui stacked segment">
+
+                    <div class="field">
+                        <div class="ui left icon input">
+                            <i class="user icon"></i>
+                            <input type="text" value="{{ last_username }}" name="username" placeholder="Username" required autofocus>
+                        </div>
+                    </div>
+                    <div class="field">
+                        <div class="ui left icon input">
+                            <i class="lock icon"></i>
+                            <input type="password" name="password" placeholder="Password" required>
+                        </div>
+                    </div>
+
+                    <input type="hidden" name="_csrf_token"
+                           value="{{ csrf_token('authenticate') }}"
+                    >
+
+                    <button type="submit" class="ui fluid large violet submit button">
+                        Sign in
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+
+{% endblock %}

@@ -1,0 +1,73 @@
+{% extends 'main.html.twig' %}
+
+{% block title %}Reports{% endblock %}
+
+{% block content %}
+    <div class="ui grid">
+        <div class="twelve wide column">
+            <h2 class="ui left floated header">Reports</h2>
+            <a href="{{ path('report_new') }}" class="ui right floated circular violet button">Create new Report</a>
+            <table class="ui very basic single line striped table" id="report_list">
+                <thead>
+                <tr>
+                    <th class="collapsing">ID</th>
+                    <th>Name</th>
+                    <th>Recursion</th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for report in reports %}
+                    <tr>
+                        <td colspan="4" class="center aligned"><i class="sync alternate loading icon"></i>Loading Data</td>
+                    </tr>
+                {% else %}
+                    <tr>
+                        <td colspan="4" class="center aligned">no records found</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <div class="four wide column">
+            <h3>Report history</h3>
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    <script>
+        let reloadReportTable = ()=> {
+            $.ajax({
+                url: '{{ path('report_index_api') }}'
+            }).done((data) => {
+                $("#report_list > tbody tr").remove();
+                data.forEach((row)=>{
+                    let newTR = `<tr><td class="disabled">${row.id}</td>`;
+                    newTR += `<td><a href="/report/${row.id}">${row.name}</a></td>`;
+                    newTR += `<td>${row.recursion}</td>`;
+                    newTR += `<td class="right aligned actions">`;
+                    console.log(row.result_id);
+                    if (row.result_id!==null){
+                        newTR += `<a href="/result/${row.result_id}" class="popup" data-content="Last Result" data-variation="inverted mini"><i class="link table icon"></i></a>`
+                        newTR += `<a href="/report/${row.id}/results" class="popup" data-content="History" data-variation="inverted mini"><i class="link history icon"></i></a>`
+                    }
+                    if (row.state=='idle') {
+                        newTR += `<a href="/report/${row.id}/run" class="popup" data-content="Run Report" data-variation="inverted mini"><i class="link play icon"></i></a>`;
+                    }else if (row.state=='wait') {
+                        newTR += `<i class="hourglass half grey icon"></i>`;
+                    }else if (row.state=='running') {
+                        newTR += `<i class="cog loading orange icon"></i>`;
+                    }else {
+                        newTR += `<i class="stop icon"></i>`;
+                    }
+                    newTR += `</td></tr>`;
+                    $('#report_list > tbody:last-child').append(newTR);
+                    $('.popup').popup();
+                });
+            });
+        }
+        reloadReportTable();
+        setInterval(reloadReportTable, 5000);
+    </script>
+{% endblock %}

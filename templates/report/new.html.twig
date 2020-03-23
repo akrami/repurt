@@ -1,0 +1,36 @@
+{% extends 'main.html.twig' %}
+
+{% block title %}New Report{% endblock %}
+
+{% block content %}
+    <h1>Create new Report</h1>
+
+    <form action="{{ path('report_new') }}" method="post" class="ui form">
+        <h4 class="ui dividing header">Report Information</h4>
+        <div class="two fields">
+            <div class="field">
+                <label>Name</label>
+                <input type="text" name="report[name]" placeholder="Name" required>
+            </div>
+            <div class="field">
+                <label>Recursion</label>
+                <select name="report[recursion]" class="ui fluid dropdown">
+                    <option value="None">None</option>
+                    <option value="Hourly">Hourly</option>
+                    <option value="Daily">Daily</option>
+                    <option value="Weekly">Weekly</option>
+                    <option value="Monthly">Monthly</option>
+                </select>
+            </div>
+        </div>
+        <div class="field">
+            <label>Query</label>
+            <textarea name="report[query]" class="code" required></textarea>
+        </div>
+        <input type="hidden" name="token" value="{{ csrf_token('new_report') }}">
+        <button class="ui violet circular button">Save</button>
+        <a href="{{ path('report_index') }}" class="ui right floated circular button">back to list</a>
+    </form>
+
+
+{% endblock %}
