@@ -1,3 +1,5 @@
-#REPURT
+# REPURT
 
-repurt is a database report manager, this app is currently not finished.
+**repurt** is a report manager that queue your _postgresql_ database queries.
+
+it is designed for heavily loaded databases that take minutes to return result.
